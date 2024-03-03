@@ -21,27 +21,25 @@ jobs:
         with:
           ruby-version: '3.1.2'
           bundler-cache: true
-
-      - name: Install Fastlane
-        run: bundle install
-
-      - name: create-google-json-file
-        id: create_google_json
+          
+      - id: create_google_json
         env:
           TMPDIR: ${{ runner.temp }}
           GOOGLE_JSON_KEY_BASE64: ${{ secrets.GOOGLE_JSON_KEY_BASE64 }}
         run: |
           echo "${{ env.GOOGLE_JSON_KEY_BASE64 }}" | base64 -d > "${{ env.TMPDIR }}/__google_credentials.json"
           echo "::set-output name=google_credentials_file::${{ env.TMPDIR }}/__google_credentials.json"
-          
-      - name: create-keystore-file
-        id: create_key_store
+
+      - id: create_key_store
         env:
           TMPDIR: ${{ runner.temp }}
           ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
         run: |
           echo "${{ env.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > "${{ env.TMPDIR }}/__keystore.jks"
           echo "::set-output name=keystore_file::${{ env.TMPDIR }}/__keystore.jks"
+
+      - name: Install Fastlane
+        run: bundle install
 
       - name: Assemble and Upload to PlayStore
         run: bundle exec fastlane android build
