@@ -1,0 +1,54 @@
+name: Publish Android Only
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version Name'
+        required: true
+      build:
+        description: 'Build Number'
+        required: true
+
+jobs:
+  release-android:
+    name: Build and release Android app
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: maxim-lobanov/setup-xamarin@v1
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.x'
+
+      - name: Install Fastlane
+        run: bundle install
+
+      - name: create-google-json-file
+        if: ${{ secrets.GOOGLE_JSON_KEY_BASE64 != '' }}
+        shell: bash
+        env:
+          TMPDIR: ${{ runner.temp }}
+        run: |
+          echo "${{ secrets.GOOGLE_JSON_KEY_BASE64 }}" | base64 -d > "${TMPDIR}/__google_credentials.json"
+          echo "google-credentials-file=${TMPDIR}/__google_credentials.json" >> $GITHUB_OUTPUT
+          
+      - name: create-keystore-file
+        if: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
+        shell: bash
+        env:
+          TMPDIR: ${{ runner.temp }}
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > "${TMPDIR}/__keystore.jks"
+          echo "keystore-file=${TMPDIR}/__keystore.jks" >> $GITHUB_OUTPUT
+
+      - name: Assemble and Upload to PlayStore
+        run: bundle exec fastlane android build
+        env:
+          VERSION_NAME: ${{ github.event.inputs.version }}
+          BUILD_NUMBER: ${{ github.event.inputs.build }}
+          GOOGLE_JSON_FILE: ${{ steps.create-google-json-file.outputs.google-credentials-file }}
+          ANDROID_KEYSTORE: ${{ steps.create-keystore-file.outputs.keystore-file }}
+          STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_ALIAS_PASSWORD: ${{ secrets.KEY_ALIAS_PASSWORD }}
