@@ -7,8 +7,8 @@ desc 'Compile the project'
     
     app_version(
       solution_path: 'App1.sln',
-      version: '1.0',
-      build: '2',
+      version: ENV['VERSION_NAME'],
+      build: ENV['BUILD_NUMBER'],
     )
 
     keystore_path = ENV['ANDROID_KEYSTORE']
