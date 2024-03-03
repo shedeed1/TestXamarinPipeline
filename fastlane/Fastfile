@@ -14,7 +14,7 @@ desc 'Compile the project'
     keystore_path = ENV['ANDROID_KEYSTORE']
     keystore_password = ENV['STORE_PASSWORD']
     key_alias= ENV['KEY_ALIAS']
-    key_alias_password = ['KEY_ALIAS_PASSWORD']
+    key_alias_password = ENV['KEY_ALIAS_PASSWORD']
     android_project_path = ENV['PWD'] + '/App1/App1.Droid/App1.Droid.csproj'
     
     sh("msbuild /p:Configuration=Release -t:SignAndroidPackage /p:AndroidKeyStore=True /p:AndroidSigningKeyStore=#{keystore_path} /p:AndroidSigningStorePass=#{keystore_password} /p:AndroidSigningKeyAlias=#{key_alias} /p:AndroidSigningKeyPass=#{key_alias_password} #{android_project_path}")
