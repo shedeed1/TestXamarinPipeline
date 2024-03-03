@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "test-app-416112",
+  "private_key_id": "42bf166c6b0222962bb34906db8223c558088aaa",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC9i7k7o7pEZ7yr\n6jgwuEX6DmDEphxz73c2InmwXyLraK7wQWdRa6aOGN+z6LWiIEtBbHCVXoBFXMol\nzeUWoOWPbMYJoM65MIZh8IBTf5ST/YkzyDWwQ+hHA5hSmQhLAJghtmMRFqzl+i75\nRUQt5UMxY1LjdPfu3NcYaUlsq0tPE7uURjgm8Xy9/wG6EGkIcuHKhg9ZoaVJ2ofb\npngkFkL/UlDwT2WbW5vm+LFkhVGfQwvDrahnnjzNo0/lZO127IODdN/jJwrnc/T4\npngC8+0VkNb9eO5RjsbeVTUIjKMltgTdzyYYCcHhgA3oSOFZjy0+L2YwIcpFWjNJ\nYtGxOuIjAgMBAAECggEACBMUMdS14iUd1fWqgsokJ6oGIvUalYZtfc+2fwtxJDXM\n7KzfQbTZdF3d5b7zlzOopmGquB+S96F4y7x7gQfF+mKoBbqlI8whOrnb6vKujyay\npL3nf5nyTVgmBzAVY4XjyofdAi+E77UahtbrDR4iSyUlNPhYzthMjMcrcBF/VJ/P\n9bXft+jDFQ4RoHmx3QiBjX1+TYrQEGWMJGvbFaoCL75CJtA8xf57HOx4kAqCABz8\nkbWU6kF1qUXzUiQ/iLDvuHn9ilVWMdHc1BDNpIbmNFbd4PC4ubB8GmoIAXUeaOsz\nReoX8q6ek62pP9oxOCUPWRZxgBUd0A0ew3frq2uZgQKBgQDkRLWBCRP++JfqhZa4\nktsYJGEVV13k7xSHeWoH5J2ARYp0VgCFR22hqAxu18yfsvTg7O6Z+Q2groEjC9oF\nA5dop5Z5GWWH7kxWwKD5w5Pz1kK6hM9fTkhwt/XpuMaI2mZ35PPAMvQz9GrI8RHx\nuHDIBvMxkczwhAYCgzhriQ8HowKBgQDUkrehqhXil6XXA4LAXOxied3HQHhEpxmj\n1bJjusdvKuSOlAGs8QrtqV/QP9+tY2eFFJDv6XrHTes1yB0xYo4Gkks+Pnsd+JWE\ndXYEAHPKECbMqur386bhgayCc9hFS9H8Zx5Rc7Ilv1XkIioL01ew1g54wvQLZKkx\nxk0zR7xjgQKBgQCJpJzFqBG0p3YDZnZR6cvPLPCVi88EYt3AKwgypjoKxOQN7mX1\n9/I1jj2hAONUUPa0QmpF0hXTlCYuWdEnQNkltBhaAWRlqN3DWfg3YyVt3P7ztW3O\nDEhGH8dbHZ4pm3g6R4ZrmM4EHhfd/u9REGSBWR9//mjThuiQz0tQHJ9BfQKBgC+v\n0j4UF+DDQFLh2L0qm2TkDdqbHd/Y1KmqUOCKkB7iMm/ByDZxxI/YRUREb/tHp3t1\nR6ZqbD61viRMhjAD+fSDcRm/joMEtxYF+7meGFumD+4uEZQaNr+0BW0ma8fv4GWN\nBIIlQDuzlqMc/u20NaHYA1sX8QN1S3d9EuiEGUEBAoGBAONq2ky7JSG4z9oEA/fb\nnh5zhstlEX8/9jzXZuHumXa/XLWGLmoX7C8ertEIoiuvmXMHAHgXuJLJ8Nv1rE1O\ntw/mKG4Tyo4jPpOyezsMbhK1D+IUodXS4qzsTfi62Pyj2pfXOY5GlSGa27Yr0Uq9\nQ3wdx/76eG1tZ0rbJIZlaaNT\n-----END PRIVATE KEY-----\n",
+  "client_email": "xamarin@test-app-416112.iam.gserviceaccount.com",
+  "client_id": "111957894879862253631",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/xamarin%40test-app-416112.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

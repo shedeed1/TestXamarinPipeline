@@ -1,0 +1,30 @@
+desc 'Compile the project'
+  platform :android do
+    lane :build do |options|
+    nuget_restore(
+      project_path: 'App1.sln'
+    )
+    
+    app_version(
+          solution_path: 'App1.sln',
+          version: '1.0',
+          build: '2',
+    )
+
+    keystore_path = ENV['PWD'] + "/App1/App1.Droid/xamarin.jks"
+    keystore_password = 'shedeed'
+    key_alias= 'key0'
+    key_alias_password = 'shedeed'
+    android_project_path = ENV['PWD'] + '/App1/App1.Droid/App1.Droid.csproj'
+    
+    sh("msbuild /p:Configuration=Release -t:SignAndroidPackage /p:AndroidKeyStore=True /p:AndroidSigningKeyStore=#{keystore_path} /p:AndroidSigningStorePass=#{keystore_password} /p:AndroidSigningKeyAlias=#{key_alias} /p:AndroidSigningKeyPass=#{key_alias_password} #{android_project_path}")
+    
+    supply(
+      aab: ENV['PWD'] + '/App1/App1.Droid/bin/Release/com.shedeed.myapp-Signed.aab',
+      package_name: 'com.shedeed.myapp',
+      track: 'alpha', # upload to alpha, we can promote it later
+      json_key: ENV['PWD'] +'/App1/App1.Droid/test-app-416112-42bf166c6b02.json',
+      release_status: 'draft',
+    )
+    end
+  end

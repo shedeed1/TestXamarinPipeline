@@ -1,0 +1,2 @@
+gem "fastlane-plugin-souyuz", git: "https://github.com/shedeed1/souyuz"
+gem 'fastlane-plugin-xamarin'
