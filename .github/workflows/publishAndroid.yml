@@ -25,21 +25,25 @@ jobs:
         run: bundle install
 
       - name: create-google-json-file
-        if: ${{ secrets.GOOGLE_JSON_KEY_BASE64 != '' }}
+        with:
+          GOOGLE_JSON_KEY_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        if: ${{ inputs.GOOGLE_JSON_KEY_BASE64 != '' }}
         shell: bash
         env:
           TMPDIR: ${{ runner.temp }}
         run: |
-          echo "${{ secrets.GOOGLE_JSON_KEY_BASE64 }}" | base64 -d > "${TMPDIR}/__google_credentials.json"
+          echo "${{ inputs.GOOGLE_JSON_KEY_BASE64 }}" | base64 -d > "${TMPDIR}/__google_credentials.json"
           echo "google-credentials-file=${TMPDIR}/__google_credentials.json" >> $GITHUB_OUTPUT
           
       - name: create-keystore-file
-        if: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
+        with:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        if: ${{ inputs.ANDROID_KEYSTORE_BASE64 != '' }}
         shell: bash
         env:
           TMPDIR: ${{ runner.temp }}
         run: |
-          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > "${TMPDIR}/__keystore.jks"
+          echo "${{ inputs.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > "${TMPDIR}/__keystore.jks"
           echo "keystore-file=${TMPDIR}/__keystore.jks" >> $GITHUB_OUTPUT
 
       - name: Assemble and Upload to PlayStore
