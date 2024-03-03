@@ -24,24 +24,20 @@ jobs:
       - name: Install Fastlane
         run: bundle install
 
-      - name: create-google-json-file
-        with:
-          GOOGLE_JSON_KEY_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-        if: ${{ inputs.GOOGLE_JSON_KEY_BASE64 != '' }}
+      - name: create-google-json-file     
         env:
           TMPDIR: ${{ runner.temp }}
+          GOOGLE_JSON_KEY_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
         run: |
-          echo "${{ inputs.GOOGLE_JSON_KEY_BASE64 }}" | base64 -d > "${TMPDIR}/__google_credentials.json"
+          echo "${{ env.GOOGLE_JSON_KEY_BASE64 }}" | base64 -d > "${TMPDIR}/__google_credentials.json"
           echo "google-credentials-file=${TMPDIR}/__google_credentials.json" >> $GITHUB_OUTPUT
           
-      - name: create-keystore-file
-        with:
-          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-        if: ${{ inputs.ANDROID_KEYSTORE_BASE64 != '' }}
+      - name: create-keystore-file   
         env:
           TMPDIR: ${{ runner.temp }}
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
         run: |
-          echo "${{ inputs.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > "${TMPDIR}/__keystore.jks"
+          echo "${{ env.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > "${TMPDIR}/__keystore.jks"
           echo "keystore-file=${TMPDIR}/__keystore.jks" >> $GITHUB_OUTPUT
 
       - name: Assemble and Upload to PlayStore
