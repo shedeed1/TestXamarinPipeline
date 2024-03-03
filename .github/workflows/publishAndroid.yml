@@ -28,7 +28,6 @@ jobs:
         with:
           GOOGLE_JSON_KEY_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
         if: ${{ inputs.GOOGLE_JSON_KEY_BASE64 != '' }}
-        shell: bash
         env:
           TMPDIR: ${{ runner.temp }}
         run: |
@@ -39,7 +38,6 @@ jobs:
         with:
           ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
         if: ${{ inputs.ANDROID_KEYSTORE_BASE64 != '' }}
-        shell: bash
         env:
           TMPDIR: ${{ runner.temp }}
         run: |
