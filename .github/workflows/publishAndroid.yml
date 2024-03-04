@@ -53,8 +53,9 @@ jobs:
 
       - name: Install Fastlane
         run: bundle install
-
+        id: install_fastlane
       - name: Assemble and Upload to PlayStore
+        id: build_and_upload
         run: bundle exec fastlane android build
         env:
           VERSION_NAME: ${{ github.event.inputs.version }}
