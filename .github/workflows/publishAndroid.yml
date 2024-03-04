@@ -1,6 +1,8 @@
 name: Publish Android Only
 
 on:
+  schedule:
+    - cron: '0 5 * * *' # Schedule to run every day at 5am
   workflow_dispatch:
     inputs:
       version:
@@ -16,6 +18,19 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Check for repo changes in the last 24 hours
+        id: check_changes
+        run: |
+          LAST_COMMIT_TIME=$(git log -1 --format=%ct)
+          CURRENT_TIME=$(date +%s)
+          DIFF=$((CURRENT_TIME - LAST_COMMIT_TIME))
+          # 86400 seconds in 24 hours
+          if [ $DIFF -gt 86400 ]; then
+            echo "No changes in the last 24 hours. Exiting..."
+            exit 78 # Exiting with a specific status code to indicate no changes
+          else
+            echo "Changes detected in the last 24 hours. Continuing..."
+          fi
       - uses: maxim-lobanov/setup-xamarin@v1
       - uses: ruby/setup-ruby@v1
         with:
@@ -49,3 +64,9 @@ jobs:
           STORE_PASSWORD: ${{ secrets.KEY_STORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_ALIAS_PASSWORD: ${{ secrets.KEY_ALIAS_PASSWORD }}
+          
+      - name: Microsoft Teams Notification
+        uses: skitionek/notify-microsoft-teams@master
+        if: always()
+        with:
+          webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
