@@ -78,9 +78,5 @@ jobs:
           needs: ${{ toJson(needs) }}
           job: ${{ toJson(job) }}
           steps: ${{ toJson(steps) }}
-          raw: >-
-            {
-              "@type": "MessageCard",
-              "@context": "http://schema.org/extensions",
-              "title": "App: ${{ github.repository }}, Version: ${{ env.TEST_VERSION }}"
-            }
+          overwrite: "{title: `App: ${{ github.repository }}, Version: ${{ env.TEST_VERSION }}`}"
+          
