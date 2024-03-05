@@ -28,7 +28,7 @@ desc 'Compile the project'
     )
     end
     lane :get_version do |options|
-       ENV['TEST_VERSION'] = '5020'
+       sh("echo TEST_VERSION=5020 >> $GITHUB_ENV")
     end
   end
  

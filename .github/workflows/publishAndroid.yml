@@ -82,5 +82,5 @@ jobs:
             {
               "@type": "MessageCard",
               "@context": "http://schema.org/extensions",
-              "title": "Version: ${{ env.TEST_VERSION }}"
+              "title": "App: ${{ github.repository }}, Version: ${{ env.TEST_VERSION }}"
             }
