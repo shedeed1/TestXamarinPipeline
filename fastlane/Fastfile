@@ -27,4 +27,10 @@ desc 'Compile the project'
       release_status: 'draft',
     )
     end
+    lane :get_version do |options|
+       ENV['TEST_VERSION'] = '5020'
+    end
   end
+ 
+  
+  
